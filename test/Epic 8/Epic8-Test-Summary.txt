@@ -1,0 +1,34 @@
+[PASS] E8-01 (Story 1, positive) Send a message to a connection whose request I sent (alice -> bob)
+[PASS] E8-02 (Story 1, positive) Send a message to a connection whose request I accepted (alice -> carol)
+[PASS] E8-03 (Story 1, positive) The other side of a connection can message back (bob -> alice)
+[PASS] E8-04 (Story 1, positive) Send several messages to different connections in one session
+[PASS] E8-05 (Story 2, positive) Recipient prompt comes first and the confirmation names the chosen recipient
+[PASS] E8-06 (Story 2, edge) Recipient typed with surrounding spaces is accepted and stored as the clean username
+[PASS] E8-07 (Story 2, negative) Recipient username in the wrong case (BOB) is not treated as a connection
+[PASS] E8-08 (Story 2, negative) Blank recipient username is rejected
+[PASS] E8-09 (Story 3, positive) Free-form content with punctuation, digits and symbols is stored verbatim
+[PASS] E8-10 (Story 3, edge) Message of exactly 200 characters is accepted and stored in full
+[PASS] E8-11 (Story 3, negative) Message of 201 characters is rejected and not saved
+[PASS] E8-12 (Story 3, negative) Very long message (300 chars, longer than the input buffer) is rejected and the next input line is still read correctly
+[PASS] E8-13 (Story 3, edge) Empty message content is not sent
+[PASS] E8-14 (Story 4, negative) Recipient does not exist (ghost)
+[PASS] E8-15 (Story 4, negative) Recipient exists but has no connection with the sender (frank)
+[PASS] E8-16 (Story 4, negative) Recipient has a PENDING request from the sender (alice -> dave)
+[PASS] E8-17 (Story 4, negative) Receiver of a PENDING request tries to message the requester (dave -> alice)
+[PASS] E8-18 (Story 4, negative) Recipient whose request was REJECTED (erin -> alice)
+[PASS] E8-19 (Story 4, negative) User tries to message themselves (alice -> alice)
+[PASS] E8-20 (Story 4, negative) After a rejected recipient the user can still message a real connection; only that one is saved
+[PASS] E8-21 (Story 5, positive) Messages survive a restart and new messages are appended, not overwritten
+[PASS] E8-22 (Story 5, positive) A pre-existing InCollege-Messages.txt is kept and the new message is appended
+[PASS] E8-23 (Story 5, positive) Accepting a pending request allows messaging immediately and after a restart
+[PASS] E8-24 (Story 6, positive) Main menu has 'Messages'; submenu shows Send / View / Back; View is under construction; Back returns to main menu
+[PASS] E8-25 (Story 6, negative) Invalid choices in the Messages menu are rejected and the menu is shown again
+[PASS] E8-26 (Story 6, positive) Messages menu can be entered and left repeatedly in one session
+[PASS] E8-27 (Story 6, positive) Regression: View connections still works after sending a message
+[PASS] E8-28 (Story 7, positive) Complete send flow driven only by InCollege-Input.txt (matches the epic's sample run)
+[PASS] E8-29 (Story 7, edge) Input file ends right after choosing Messages: program exits cleanly
+[PASS] E8-30 (Story 7, edge) Input file ends at the recipient prompt: program exits cleanly, nothing saved
+[PASS] E8-31 (Story 7, edge) Input file ends at the message prompt: program exits cleanly, nothing saved
+[PASS] E8-32 (Story 8, positive) Console and InCollege-Output.txt are identical for a session mixing sends, errors and long input
+
+32/32 test cases passed.
