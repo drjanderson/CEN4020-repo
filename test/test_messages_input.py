@@ -84,6 +84,18 @@ class MessageFileInputTests(unittest.TestCase):
         self.assertIn("Message must be 200 characters or fewer.\n", output)
         self.assertFalse((self.directory / "InCollege-Messages.txt").exists())
 
+    def test_empty_message_is_rejected(self):
+        output = self.run_input(["9", "1", "bob", "", "3", "6"], request())
+        self.assertIn("Message cannot be empty.\n", output)
+        self.assertNotIn("Message sent to bob successfully!", output)
+        self.assertFalse((self.directory / "InCollege-Messages.txt").exists())
+
+    def test_padded_recipient_is_stored_trimmed(self):
+        output = self.run_input(["9", "1", "   bob   ", "Padded", "3", "6"], request())
+        self.assertIn("Message sent to bob successfully!\n", output)
+        record = (self.directory / "InCollege-Messages.txt").read_text()
+        self.assertEqual(record[20:40], f"{'bob':<20}")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -90,7 +90,7 @@
            IF END-OF-INPUT
                GOBACK
            END-IF
-           MOVE WS-LINE-TEXT TO WS-RECIPIENT
+           MOVE FUNCTION TRIM(WS-LINE-TEXT) TO WS-RECIPIENT
 
            PERFORM VALIDATE-CONNECTION
            IF WS-CONNECTED = 'N'
@@ -104,6 +104,11 @@
            CALL "WRITE-LINE" USING WS-MESSAGE
            CALL "READ-LONG-LINE" USING WS-CONTENT
            IF END-OF-INPUT
+               GOBACK
+           END-IF
+           IF WS-CONTENT = SPACES
+               MOVE "Message cannot be empty." TO WS-MESSAGE
+               CALL "WRITE-LINE" USING WS-MESSAGE
                GOBACK
            END-IF
            IF WS-CONTENT(201:50) NOT = SPACES

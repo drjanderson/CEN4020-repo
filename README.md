@@ -248,7 +248,8 @@ Message**, **2. View My Messages**, and **3. Back to Main Menu**. Viewing messag
 for the next epic and currently displays an under-construction message.
 
 To send, provide the recipient's username followed by one line of free-form message content (up
-to 200 characters). The recipient must be connected to the logged-in user through an accepted
+to 200 characters; an empty line is rejected with `Message cannot be empty.`). Surrounding spaces in
+the recipient's username are ignored. The recipient must be connected to the logged-in user through an accepted
 connection request; non-existent, pending, rejected, and otherwise unconnected users all produce
 `You can only message users you are connected with.` without reading a message-content line.
 
